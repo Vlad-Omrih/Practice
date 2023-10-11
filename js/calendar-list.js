@@ -1,26 +1,26 @@
 export function render(data) {
 
-// : 
+// :
 // Array(12)
 // 0
-// : 
+// :
 // brief
-// : 
+// :
 // "Митап \"Обмен опытом в тестировании: от стартапа до энтерпрайза\""
 // date_range
-// : 
+// :
 // "4 октября 2023"
 // location
-// : 
+// :
 // "Онлайн: по всему миру"
 // logo
-// : 
+// :
 // "//conf.ontico.ru//binary/59/131/df0c1d03bc547b8a112e307c92e/file.svg"
 // name
-// : 
+// :
 // "Митап \"Обмен опытом в тестировании: от стартапа до энтерпрайза\""
 // uri
-// : 
+// :
 // "https://tdconf.ru/sber-meetup"
 const $container = document.createElement('div');
 const $calendarList = document.createElement('ul');
@@ -57,16 +57,17 @@ for (const product of data.result) {
     $buyButton.classList.add('calendar__btn');
     $moreButton.classList.add('more-btn');
 
+    const uriWithoutHttps = product.uri.slice(8)
 
     $dateRange.textContent = product.date_range;
     $name.textContent = product.name;
     $brief.textContent = product.brief;
     $location.textContent = product.location;
-    $uri.textContent = product.uri;
+    $uri.textContent = uriWithoutHttps.split('/')[0];
     $buyButton.textContent = "Купить билет";
     $moreButton.textContent = "Подробнее";
 
-    $uri.setAttribute("href", product.uri);
+    $moreButton.setAttribute("href", product.uri);
     $logo.setAttribute("src", product.logo);
 
     $calendarList.append($calendarItem);
